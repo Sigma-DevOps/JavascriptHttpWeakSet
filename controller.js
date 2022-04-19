@@ -9,8 +9,8 @@ const getController = async (req, res, next) => {
   if (req.query.key) {
     res.status(200).json({
       status: 'success',
-      key: req.params.key,
-      present: set.contains(req.params.key),
+      key: req.query.key,
+      present: set.contains(req.query.key),
     });
   } else next(new AppError(400, 'No Key Provided'));
 };
