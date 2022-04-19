@@ -60,7 +60,7 @@ const startListeningOnAnyFreePort = () =>
 startListeningOnAnyFreePort()
   .then(app.initialize)
   .then(() => {
-    console.log('Mockingbird started successfully');
+    console.log('HTTP-WeakSet started successfully');
   })
   .catch((err) => {
     console.error('There was a problem with running Mockingbird');

@@ -17,9 +17,10 @@ class WeakSet {
   }
 
   garbageCollector() {
-    Object.keys(this.hashMap).forEach((key) => {
-      if (Date.now() > this.hashMap[key]) delete this.hashMap[key];
-    });
+    if (this.hashMap)
+      Object.keys(this.hashMap).forEach((key) => {
+        if (Date.now() > this.hashMap[key]) delete this.hashMap[key];
+      });
   }
 }
 

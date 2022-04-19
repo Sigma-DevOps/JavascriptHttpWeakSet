@@ -5,8 +5,8 @@ const WeakSet = require('./utils/weakSet');
 
 const set = new WeakSet();
 
-const getController = (req, res, next) => {
-  if (req.params.key) {
+const getController = async (req, res, next) => {
+  if (req.query.key) {
     res.status(200).json({
       status: 'success',
       key: req.params.key,
@@ -15,13 +15,14 @@ const getController = (req, res, next) => {
   } else next(new AppError(400, 'No Key Provided'));
 };
 
-const insertController = (req, res, next) => {
-  if (req.params.key) {
-    if (set.contains(req.params.key))
+const insertController = async (req, res, next) => {
+  if (req.query.key) {
+    if (set.contains(req.query.key))
       return next(new AppError(400, 'Duplicated Key'));
+    set.insert(req.query.key, req.query.age);
     res.status(200).json({
       status: 'success',
-      key: req.params.key,
+      key: req.query.key,
     });
   } else next(new AppError(400, 'No Key Provided'));
 };
